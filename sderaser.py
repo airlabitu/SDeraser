@@ -69,6 +69,8 @@ def btnOff():
 	GPIO.output(btnLED2, GPIO.LOW)
 
 # Main loop
+GPIO.cleanup
+btnOff()
 try:
     while True:
         blocks1 = blockCheck()
