@@ -83,9 +83,9 @@ try:
                 print("Waiting for SD...")
                 waitstate = 0
             else:
-                print("Waiting for SD...")
+                print("Waiting for SD..")
                 waitstate = 1
 
 except KeyboardInterrupt:
     GPIO.cleanup()
-    print("/n/n/n...Exit by user!")
+    print("\n\n\n...Exit by user!")
