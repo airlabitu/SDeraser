@@ -7,7 +7,6 @@ import time
 import os
 import subprocess
 import RPi.GPIO as GPIO
-print("Launching SD earser programme")
 
 GPIO.setmode(GPIO.BOARD)
 btnLED1 = 37
@@ -74,7 +73,7 @@ def btnOff():
 # Main loop
 GPIO.cleanup
 btnOff()
-print("Resetting GPIO's and buttons...\n\n\n")
+print("Resetting GPIO's and buttons...\n")
 print("###############################################")
 
 try:
@@ -82,26 +81,26 @@ try:
         blocks1 = blockCheck()
         time.sleep(2)
         blocks2 = blockCheck()
-        
-        if len(blocks2) > len(blocks1):
+        if len(blocks2) > len(blocks1):  #Check if amount of volumes changes (aka. a block device is inserted)
             block = blocks2[0]
             print("CARD INSERTED. Contains the following:")
             os.system("lsblk")
             btnGreen()
             print(f"Format volume /dev/{block}? \n Press green button to continue")
 
-            while not GPIO.input(btn):
+            while not GPIO.input(btn): #Loop holds the code until button is pushed to confirm the erase
                 time.sleep(0.1)
-
-            #GPIO.wait_for_edge(btn, GPIO.RISING)
             btnRed()
-            if "mmc" not in block:
-                wipeSD(block)
-            else:
+
+            if "sd" in block:   # Only erase block if it is named SD (as is expected)
+                wipeSD(block)            
+            elif "mmc" in block:    # Reject if it tries to erase itself
                 print("Sorry, can't interact with my own block (MMCBLK)")
+            else:
+                print("Something went wrong - maybe the block isn't named 'sd...?' ")
             
         else:
-            if waitstate == 1:
+            if waitstate == 1:  #Create an alternating wait messsage to make terminal look alive
                 print("Waiting for SD....")
                 waitstate = 0
             else:
