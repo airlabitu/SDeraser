@@ -1,30 +1,45 @@
 from time import sleep
 import RPi.GPIO as GPIO
 
-GPIO.setmode(GPIO.BOARD) # set GPIO to use the pin numbers instead of pin names
+GPIO.setmode(GPIO.BOARD)
+btnLED1 = 37
+btnLED2 = 38
 
-led_pin1 = 35 # pin number 7
-led_pin2 = 36 # pin number 11
+GPIO.setup(btnLED1,GPIO.OUT) # set the pin to output
+GPIO.setup(btnLED2,GPIO.OUT) # set the pin to output
 
-led_pin3 = 37 # pin number 7
-led_pin4 = 38 # pin number 11
+def btnRed():
+	"""Sets button colour to red"""
+	GPIO.output(btnLED1, HIGH)
+	GPIO.output(btnLED2, LOW)
 
-GPIO.setup(led_pin1,GPIO.OUT) # set the pin to output
-GPIO.setup(led_pin2,GPIO.OUT) # set the pin to output
 
-GPIO.setup(led_pin3,GPIO.OUT) # set the pin to output
-GPIO.setup(led_pin4,GPIO.OUT) # set the pin to output
+def btnGreen():
+	"""Sets button colour to green"""
+	GPIO.output(btnLED1, LOW)
+	GPIO.output(btnLED2, HIGH)
 
-state = 0
+
+def btnOff():
+	"""Sets button colour to off"""
+	GPIO.output(btnLED1, LOW)
+	GPIO.output(btnLED2, LOW)
+
 
 try:
 	print ("Look at the bicolor LED. It should be alternating. Ctrl+C to end.")
 	while(1):
-		GPIO.output(led_pin1,state)
-		GPIO.output(led_pin2,state)
-		GPIO.output(led_pin3,not state)
-		GPIO.output(led_pin4,not state)
-		state = not state # reverse state
-		sleep(.50) # wait a quarter second
+		btnRed()
+		print("RED")
+		time.sleep(0.5)
+
+		btnGreen()
+		print("GREEN")
+		time.sleep(0.5)
+
+		btnOff()
+		print("OFF")
+		time.sleep(0.5)
+
 except KeyboardInterrupt:
 	GPIO.cleanup()
