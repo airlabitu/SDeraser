@@ -47,11 +47,11 @@ def wipeSD(blockname):
     os.system(f"sudo mkfs.vfat -F32 /dev/{b}1")
     time.sleep(1)
     print("\nScript finished. Let's hope it worked. Remove SD card")
-    for i in range(5):
+    for i in range(5): #Button animation 
         btnRed()
-        time.sleep(0.15)
+        time.sleep(0.2)
         btnOff()
-        time.sleep(0.15)
+        time.sleep(0.2)
         i =+ 1
     btnOff()
     return None
@@ -90,7 +90,14 @@ try:
 
             while not GPIO.input(btn): #Loop holds the code until button is pushed to confirm the erase
                 time.sleep(0.1)
-            btnRed()
+
+            for i in range(3): #Button animation 
+                btnRed()
+                time.sleep(0.1)
+                btnOff()
+                time.sleep(0.1)
+                i =+ 1
+            btnOff()
 
             if "sd" in block:   # Only erase block if it is named SD (as is expected)
                 wipeSD(block)            
