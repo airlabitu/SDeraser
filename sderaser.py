@@ -78,7 +78,7 @@ print("###############################################")
 try:
     while True:
         blocks1 = blockCheck()
-        time.sleep(3)
+        time.sleep(2)
         blocks2 = blockCheck()
         
         if len(blocks2) > len(blocks1):
@@ -96,9 +96,11 @@ try:
             if waitstate == 1:
                 print("Waiting for SD....")
                 waitstate = 0
+                btnGreen()
             else:
                 print("Waiting for SD..")
                 waitstate = 1
+                btnOff()
 
 except KeyboardInterrupt:
     GPIO.cleanup()
