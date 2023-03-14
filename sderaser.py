@@ -1,7 +1,9 @@
-# !/bin/python
 # SDeraser live running script with button interaction (3.0).
-# Searches for newly inserted volumes (blocks). Will request to delete the first block on list, usually sda or sdb. Cannot delete itself "mmcblk"
-# Thomas Kaufmanas // AIRLAB ITU // spring 2023
+# Searches for newly inserted volumes (blocks). Will attempt to delete the first block on list that starts with "sd..", following raspi block order ("sda, sdb, sdc.."" etc.).
+# Uses a dual light push button as user interface. 
+# Full documentation, and tutorial: https://github.com/airlabitu/SDeraser
+
+# Thomas Kaufmanas // AIRLAB ITU // March 2023
 
 import time
 import os
@@ -18,7 +20,7 @@ GPIO.setup(btn, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 waitstate = 1
 
-# SD interaction functions
+# SD functions to interact with block
 def blockCheck():
     """Use subprocess module to read block devices inserted. Returns a list of names"""
     output = subprocess.Popen("lsblk -l -o NAME", shell=True, stdout=subprocess.PIPE).stdout
@@ -56,7 +58,7 @@ def wipeSD(blockname):
     btnOff()
     return None
 
-# Button functions
+# Button functions to switch polarity and thereby colour of button
 def btnRed():
 	"""Sets button colour to red"""
 	GPIO.output(btnLED1, GPIO.HIGH)
@@ -70,12 +72,12 @@ def btnOff():
 	GPIO.output(btnLED1, GPIO.LOW)
 	GPIO.output(btnLED2, GPIO.LOW)
 
-# Main loop
 GPIO.cleanup
 btnOff()
-print("Resetting GPIO's and buttons...\n")
+print("\nResetting GPIO's and buttons, launching SDeraser programme...\n")
 print("###############################################")
 
+# Main loop
 try:
     while True:
         blocks1 = blockCheck()
