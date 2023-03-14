@@ -12,8 +12,10 @@ print("Launching SD earser programme")
 GPIO.setmode(GPIO.BOARD)
 btnLED1 = 37
 btnLED2 = 38
+btn = 7
 GPIO.setup(btnLED1,GPIO.OUT)
 GPIO.setup(btnLED2,GPIO.OUT)
+GPIO.setup(btn, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 waitstate = 1
 
@@ -86,11 +88,13 @@ try:
             print("CARD INSERTED. Contains the following:")
             os.system("lsblk")
             btnRed()
-            if input(f"Format volume /dev/{block}? (y/n): ") == "y":
-                if "mmc" not in block:
-                    wipeSD(block)
-                else:
-                    print("Sorry, can't interact with my own block (MMCBLK)")
+            #if input(f"Format volume /dev/{block}? (y/n): ") == "y":
+            print(f"Format volume /dev/{block}?")
+            GPIO.wait_for_edge(btn, GPIO.RISING)
+            if "mmc" not in block:
+                wipeSD(block)
+            else:
+                print("Sorry, can't interact with my own block (MMCBLK)")
             
         else:
             if waitstate == 1:
