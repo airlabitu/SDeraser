@@ -90,7 +90,7 @@ try:
             for i in range(10):
                 btnRed()
                 time.sleep(.10)
-                btn.off()
+                btnOff()
                 time.sleep(.05)
                 i =+ 1
             print(f"Format volume /dev/{block}? \n Press red button to continue")
