@@ -14,7 +14,7 @@ btnLED2 = 38
 GPIO.setup(btnLED1,GPIO.OUT)
 GPIO.setup(btnLED2,GPIO.OUT)
 
-waitstate = False
+waitstate = 1
 
 # SD interaction functions
 def blockCheck():
@@ -79,13 +79,13 @@ try:
                     print("Sorry, can't interact with my own block (MMCBLK)")
             
         else:
-            if waitstate:
+            if waitstate == 1:
                 print("Waiting for SD...")
-                waitstate = False
+                waitstate = 0
             else:
                 print("Waiting for SD...")
-                waitstate = True
+                waitstate = 1
 
 except KeyboardInterrupt:
     GPIO.cleanup()
-    print("Exit by user")
+    print("/n/n/n...Exit by user!")
