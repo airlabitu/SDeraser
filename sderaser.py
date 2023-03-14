@@ -73,6 +73,7 @@ def btnOff():
 GPIO.cleanup
 btnOff()
 print("Resetting GPIO's and buttons...\n\n\n")
+print("###############################################")
 
 try:
     while True:
