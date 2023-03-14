@@ -116,4 +116,4 @@ try:
 
 except KeyboardInterrupt:
     GPIO.cleanup()
-    print("\n\n\n...Exit by user!")
+    print("\n\n\n...Exit by user!\n")
