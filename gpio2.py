@@ -46,5 +46,7 @@ try:
 
 		print(GPIO.input(btn))
 
+		GPIO.wait_for_edge(btn, GPIO.RISING)
+
 except KeyboardInterrupt:
 	GPIO.cleanup()
