@@ -11,9 +11,12 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BOARD)
 btnLED1 = 37
 btnLED2 = 38
-GPIO.setup(btnLED1,GPIO.OUT) # set the pin to output
-GPIO.setup(btnLED2,GPIO.OUT) # set the pin to output
+GPIO.setup(btnLED1,GPIO.OUT)
+GPIO.setup(btnLED2,GPIO.OUT)
 
+waitstate = 0
+
+# SD interaction functions
 def blockCheck():
     """Use subprocess module to read block devices inserted. Returns a list of names"""
     output = subprocess.Popen("lsblk -l -o NAME", shell=True, stdout=subprocess.PIPE).stdout
@@ -44,6 +47,7 @@ def wipeSD(blockname):
     print("\nScript finished. Let's hope it worked. Remove SD card")
     return None
 
+# Button functions
 def btnRed():
 	"""Sets button colour to red"""
 	GPIO.output(btnLED1, GPIO.HIGH)
@@ -57,6 +61,7 @@ def btnOff():
 	GPIO.output(btnLED1, GPIO.LOW)
 	GPIO.output(btnLED2, GPIO.LOW)
 
+# Main loop
 try:
     while True:
         blocks1 = blockCheck()
@@ -75,7 +80,12 @@ try:
             
             
         else:
-            print("Waiting for SD ...")
+            if waitstate:
+                print("Waiting for SD...")
+            else:
+                waitstate = not waitstate
+                print("Waiting for SD..")
+
 
 except KeyboardInterrupt:
     GPIO.cleanup()
