@@ -87,10 +87,15 @@ try:
             block = blocks2[0]
             print("CARD INSERTED. Contains the following:")
             os.system("lsblk")
-            btnRed()
-            #if input(f"Format volume /dev/{block}? (y/n): ") == "y":
-            print(f"Format volume /dev/{block}?")
+            for i in range(10):
+                btnRed()
+                time.sleep(.10)
+                btn.off()
+                time.sleep(.05)
+                i =+ 1
+            print(f"Format volume /dev/{block}? \n Press red button to continue")
             GPIO.wait_for_edge(btn, GPIO.RISING)
+            btnOff()
             if "mmc" not in block:
                 wipeSD(block)
             else:
