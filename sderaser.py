@@ -53,7 +53,7 @@ def wipeSD(blockname):
         btnOff()
         time.sleep(0.2)
         i =+ 1
-    btnRed()
+    btnOff()
     return None
 
 # Button functions
@@ -97,7 +97,7 @@ try:
                 btnOff()
                 time.sleep(0.1)
                 i =+ 1
-            btnOff()
+            btnRed()
 
             if "sd" in block:   # Only erase block if it is named SD (as is expected)
                 wipeSD(block)            
