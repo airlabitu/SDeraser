@@ -7,6 +7,7 @@ import time
 import os
 import subprocess
 import RPi.GPIO as GPIO
+print("Launching SD earser programme")
 
 GPIO.setmode(GPIO.BOARD)
 btnLED1 = 37
@@ -71,6 +72,8 @@ def btnOff():
 # Main loop
 GPIO.cleanup
 btnOff()
+print("Resetting GPIO's and buttons...\n\n\n")
+
 try:
     while True:
         blocks1 = blockCheck()
