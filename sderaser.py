@@ -45,6 +45,13 @@ def wipeSD(blockname):
     os.system(f"sudo mkfs.vfat -F32 /dev/{b}1")
     time.sleep(1)
     print("\nScript finished. Let's hope it worked. Remove SD card")
+    for i in range(3):
+        btnGreen()
+        time.sleep(0.5)
+        btn.off
+        time.sleep(0.5)
+        i++
+
     return None
 
 # Button functions
@@ -62,6 +69,9 @@ def btnOff():
 	GPIO.output(btnLED2, GPIO.LOW)
 
 # Main loop
+GPIO.cleanup()
+btnOff()
+
 try:
     while True:
         blocks1 = blockCheck()
@@ -72,6 +82,7 @@ try:
             block = blocks2[0]
             print("CARD INSERTED. Contains the following:")
             os.system("lsblk")
+            btnRed()
             if input(f"Format volume /dev/{block}? (y/n): ") == "y":
                 if "mmc" not in block:
                     wipeSD(block)
@@ -80,7 +91,7 @@ try:
             
         else:
             if waitstate == 1:
-                print("Waiting for SD...")
+                print("Waiting for SD....")
                 waitstate = 0
             else:
                 print("Waiting for SD..")
