@@ -87,12 +87,13 @@ try:
             block = blocks2[0]
             print("CARD INSERTED. Contains the following:")
             os.system("lsblk")
-            for i in range(10):
+            for i in range(7):
                 btnRed()
                 time.sleep(.10)
                 btnOff()
                 time.sleep(.05)
                 i =+ 1
+            btnRed()
             print(f"Format volume /dev/{block}? \n Press red button to continue")
             GPIO.wait_for_edge(btn, GPIO.RISING)
             btnOff()
