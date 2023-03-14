@@ -10,20 +10,20 @@ GPIO.setup(btnLED2,GPIO.OUT) # set the pin to output
 
 def btnRed():
 	"""Sets button colour to red"""
-	GPIO.output(btnLED1, HIGH)
-	GPIO.output(btnLED2, LOW)
+	GPIO.output(btnLED1, GPIO.HIGH)
+	GPIO.output(btnLED2, GPIO.LOW)
 
 
 def btnGreen():
 	"""Sets button colour to green"""
-	GPIO.output(btnLED1, LOW)
-	GPIO.output(btnLED2, HIGH)
+	GPIO.output(btnLED1, GPIO.LOW)
+	GPIO.output(btnLED2, GPIO.HIGH)
 
 
 def btnOff():
 	"""Sets button colour to off"""
-	GPIO.output(btnLED1, LOW)
-	GPIO.output(btnLED2, LOW)
+	GPIO.output(btnLED1, GPIO.LOW)
+	GPIO.output(btnLED2, GPIO.LOW)
 
 
 try:
