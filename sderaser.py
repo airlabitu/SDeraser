@@ -49,12 +49,12 @@ def wipeSD(blockname):
     time.sleep(1)
     print("\nScript finished. Let's hope it worked. Remove SD card")
     for i in range(3):
-        btnGreen()
-        time.sleep(0.5)
+        btnRed()
+        time.sleep(0.2)
         btnOff()
-        time.sleep(0.5)
+        time.sleep(0.2)
         i =+ 1
-
+    btnOff()
     return None
 
 # Button functions
@@ -87,16 +87,10 @@ try:
             block = blocks2[0]
             print("CARD INSERTED. Contains the following:")
             os.system("lsblk")
-            for i in range(7):
-                btnRed()
-                time.sleep(.10)
-                btnOff()
-                time.sleep(.05)
-                i =+ 1
-            btnRed()
+            btnGreen()
             print(f"Format volume /dev/{block}? \n Press red button to continue")
             GPIO.wait_for_edge(btn, GPIO.RISING)
-            btnOff()
+            btnRed()
             if "mmc" not in block:
                 wipeSD(block)
             else:
@@ -106,11 +100,9 @@ try:
             if waitstate == 1:
                 print("Waiting for SD....")
                 waitstate = 0
-                btnGreen()
             else:
                 print("Waiting for SD..")
                 waitstate = 1
-                btnOff()
 
 except KeyboardInterrupt:
     GPIO.cleanup()
