@@ -50,7 +50,7 @@ def wipeSD(blockname):
         time.sleep(0.5)
         btn.off
         time.sleep(0.5)
-        i++
+        i=+
 
     return None
 
