@@ -48,7 +48,7 @@ def wipeSD(blockname):
     for i in range(3):
         btnGreen()
         time.sleep(0.5)
-        btn.off
+        btnOff()
         time.sleep(0.5)
         i =+ 1
 
