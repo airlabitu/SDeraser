@@ -13,7 +13,7 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BOARD)
 btnLED1 = 37
 btnLED2 = 38
-btn = 7
+btn = 3
 GPIO.setup(btnLED1,GPIO.OUT)
 GPIO.setup(btnLED2,GPIO.OUT)
 GPIO.setup(btn, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
