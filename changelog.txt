@@ -1,13 +1,32 @@
+This logs sums up changes / settings / systemside that has happened on the PI
+
 Creation:
-    sudo apt-get update
-    sudo apt-get upgrade
-    sudo apt-get install parted
+        > sudo apt-get update
+        > sudo apt-get upgrade
+        > sudo apt-get install parted
 
     Danish keyboard setup
-
-    created pythonscript in home directory
 
     removed automatic volume popup: filemanager > edit > preferences > volume management > uncheck "show available media types..." yadayada
 
 13. march
     Enable remote GPIO in raspberry pi configuration > interfaces
+
+    install github:
+        > sudo apt-get install git
+
+20. march
+    Create launcher.sh in home directory
+
+    Copy existing autostart information from global autostart:
+    sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+    (copy all lines to clipboard)
+
+
+    Create user-side autostart:
+    cd ~/.config/lxsession/LXDE-pi/
+    sudo nano autostart
+    
+    Include autostart information from global (paste from clipboard)
+    Above Xscreensaver add:
+    @lxterminal -e "/home/pi/launcher.sh"

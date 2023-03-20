@@ -50,7 +50,7 @@ def wipeSD(blockname):
     time.sleep(1)
     print("\nScript finished. Let's hope it worked. Remove SD card")
     for i in range(5): #Button animation 
-        btnRed()
+        btnGreen()
         time.sleep(0.2)
         btnOff()
         time.sleep(0.2)
@@ -115,6 +115,8 @@ try:
             else:
                 print("Waiting for SD..")
                 waitstate = 1
+
+            
 
 except KeyboardInterrupt:
     GPIO.cleanup()
