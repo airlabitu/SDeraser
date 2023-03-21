@@ -4,7 +4,8 @@ The build is based on a raspberry pi that runs a python script looking for SD ca
 
 ## Contents
 - Changelog.txt lists changes and preferences on the raspberry pi
-- Formatter.py holds the initial scripting of wiping an SD card 
-- Formatter2.py utilizes this script as a waiting loop to run in background
-- gpio.py and gpio2.py contains testing codes for button work
+- Formatter2.py introduces the basic loop checking for an SD card, and erased upon terminal input = y.
+- gpio2.py contains testing codes for working with bi-color LED and Button
+- Launcher.sh holds the script used by LXDE-PI Autostart to launch SDeraser on boot
+- pinout-corrected.jpg is self explanatory...
 - SDeraser.py holds the final script for the SDeraser station
