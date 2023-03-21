@@ -1,6 +1,8 @@
 # SDeraser
 *SDeraser (formerly known as formatterpi) is an AIRLAB Infrastructure that enables easy formatting of SD cards. The core functionality consists of a python script that automatically detects newly inserted block devices (such as SD-cards or even USB drives), and subesequently erases the device using the ubuntu software "parted". For security reasons, it is important to note that the script is technically only formatting volumes (as opposed to wiping)!  The build is kept screenless and utilizes a button with a bicolor LED as user interaction via GPIO. A full tutorial for setup up can be found amongst [AIR LABs tutorials](https://airlab.itu.dk/category/tutorial/). Below is listed a quick Raspi Changelog of settings and configurations*
 
+![alt text](https://airlab.itu.dk/wp-content/uploads/sites/71/2023/03/eraserpi.png)
+
 
 ## Contents
 - Changelog.txt lists changes and preferences on the raspberry pi
