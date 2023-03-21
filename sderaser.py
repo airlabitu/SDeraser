@@ -49,8 +49,8 @@ def wipeSD(blockname):
     os.system(f"sudo mkfs.vfat -F32 /dev/{b}1")
     time.sleep(1)
     print("\nScript finished. Let's hope it worked. Remove SD card")
-    for i in range(5): #Button animation 
-        btnGreen()
+    for i in range(2): #Button animation 
+        btnRed()
         time.sleep(0.2)
         btnOff()
         time.sleep(0.2)
