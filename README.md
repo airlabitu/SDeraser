@@ -5,7 +5,6 @@
 
 
 ## Contents
-- Changelog.txt lists changes and preferences on the raspberry pi
 - Formatter2.py introduces the basic loop checking for an SD card, and erased upon terminal input = y.
 - gpio2.py contains testing codes for working with bi-color LED and Button
 - Launcher.sh holds the script used by LXDE-PI Autostart to launch SDeraser on boot
