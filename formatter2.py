@@ -69,5 +69,4 @@ try:
                 waitstate = 1
 
 except KeyboardInterrupt:
-    GPIO.cleanup()
     print("\n\n\n...Exit by user!\n")
