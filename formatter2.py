@@ -40,6 +40,9 @@ def wipeSD(blockname):
     print("\nScript finished. Let's hope it worked. Remove SD card")
     return None
 
+print("\nLaunching SDeraser programme... ctrl+c to exit\n")
+print("###############################################")
+
 try: 
     while True:
         blocks1 = blockCheck()
