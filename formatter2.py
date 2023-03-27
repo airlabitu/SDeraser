@@ -7,6 +7,8 @@ import time
 import os
 import subprocess
 
+waitstate = 1
+
 def blockCheck():
     """Use subprocess module to read block devices inserted. Returns a list of names"""
     output = subprocess.Popen("lsblk -l -o NAME", shell=True, stdout=subprocess.PIPE).stdout
@@ -43,16 +45,24 @@ while True:
     time.sleep(3)
     blocks2 = blockCheck()
     
-    if len(blocks2) > len(blocks1):
+    if len(blocks2) > len(blocks1): #Check if amount of volumes changes (aka. a block device is inserted)
         block = blocks2[0]
         print("CARD INSERTED. Contains the following:")
         os.system("lsblk")
+
         if input(f"Format volume /dev/{block}? (y/n): ") == "y":
-            if "mmc" not in block:
+            if "sd" in block:
                 wipeSD(block)
-            else:
+            elif "mmc" in block:
                 print("Sorry, can't interact with my own block (MMCBLK)")
+            else:
+                print("Something went wrong - maybe the block isn't named 'sd...' ??")
         
         
     else:
-        print("Waiting for SD ...")
+        if waitstate == 1:  #Create an alternating wait messsage to make terminal look alive
+            print("Waiting for SD....")
+            waitstate = 0
+        else:
+            print("Waiting for SD..")
+            waitstate = 1
