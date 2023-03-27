@@ -40,29 +40,34 @@ def wipeSD(blockname):
     print("\nScript finished. Let's hope it worked. Remove SD card")
     return None
 
-while True:
-    blocks1 = blockCheck()
-    time.sleep(3)
-    blocks2 = blockCheck()
-    
-    if len(blocks2) > len(blocks1): #Check if amount of volumes changes (aka. a block device is inserted)
-        block = blocks2[0]
-        print("CARD INSERTED. Contains the following:")
-        os.system("lsblk")
+try: 
+    while True:
+        blocks1 = blockCheck()
+        time.sleep(3)
+        blocks2 = blockCheck()
+        
+        if len(blocks2) > len(blocks1): #Check if amount of volumes changes (aka. a block device is inserted)
+            block = blocks2[0]
+            print("CARD INSERTED. Contains the following:")
+            os.system("lsblk")
 
-        if input(f"Format volume /dev/{block}? (y/n): ") == "y":
-            if "sd" in block:
-                wipeSD(block)
-            elif "mmc" in block:
-                print("Sorry, can't interact with my own block (MMCBLK)")
-            else:
-                print("Something went wrong - maybe the block isn't named 'sd...' ??")
-        
-        
-    else:
-        if waitstate == 1:  #Create an alternating wait messsage to make terminal look alive
-            print("Waiting for SD....")
-            waitstate = 0
+            if input(f"Format volume /dev/{block}? (y/n): ") == "y":
+                if "sd" in block:
+                    wipeSD(block)
+                elif "mmc" in block:
+                    print("Sorry, can't interact with my own block (MMCBLK)")
+                else:
+                    print("Something went wrong - maybe the block isn't named 'sd...' ??")
+            
+            
         else:
-            print("Waiting for SD..")
-            waitstate = 1
+            if waitstate == 1:  #Create an alternating wait messsage to make terminal look alive
+                print("Waiting for SD....")
+                waitstate = 0
+            else:
+                print("Waiting for SD..")
+                waitstate = 1
+
+except KeyboardInterrupt:
+    GPIO.cleanup()
+    print("\n\n\n...Exit by user!\n")
