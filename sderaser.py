@@ -74,7 +74,7 @@ def btnOff():
 
 GPIO.cleanup
 btnOff()
-print("\nResetting GPIO's and buttons, launching SDeraser programme...\n")
+print("\nResetting GPIO's and buttons, launching SDeraser program...\n")
 print("###############################################")
 
 # Main loop

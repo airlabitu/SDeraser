@@ -40,7 +40,7 @@ def wipeSD(blockname):
     print("\nScript finished. Let's hope it worked. Remove SD card")
     return None
 
-print("\nLaunching formatter2 programme... ctrl+c to exit\n")
+print("\nLaunching formatter2 program... ctrl+c to exit\n")
 print("###############################################")
 
 try: 
